@@ -14,3 +14,5 @@ with open(sys.argv[1], 'rU') as csvfile:
 
 
 		csvwriter.writerow(new_row)
+out_file.close()
+csvfile.close()

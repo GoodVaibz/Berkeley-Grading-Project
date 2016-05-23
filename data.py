@@ -80,32 +80,32 @@ def get_grade_tuple(csvreader_2007, csvreader_2015, className):
 			num_F_07 += int(row[17])
 	for row in csvreader_2015[1:]:
 		row = list(row)
-		if abbrev == row[1].replace(' ', '') and class_num == str(row[3]):
-			 if row[9] != '':
+		if abbrev == row[2].replace(' ', '') and class_num == str(row[4]):
+			if row[9] != '':
 				num_A_plus_15 += int(row[9])
-			 if row[10] != '':
+			if row[10] != '':
 				num_A_15 += int(row[10])
-			 if row[11] != '':
+			if row[11] != '':
 				num_A_minus_15 += int(row[11])
-			 if row[12] != '':
+			if row[12] != '':
 				num_B_plus_15 += int(row[12])
-			 if row[13] != '':
+			if row[13] != '':
 				num_B_15 += int(row[13])
-			 if row[14] != '':
+			if row[14] != '':
 				num_B_minus_15 += int(row[14])
-			 if row[15] != '':
+			if row[15] != '':
 				num_C_plus_15 += int(row[15])
-			 if row[16] != '':
+			if row[16] != '':
 				num_C_15 += int(row[16])
-			 if row[17] != '':
+			if row[17] != '':
 				num_C_minus_15 += int(row[17])	
-			 if row[18] != '':
+			if row[18] != '':
 				num_D_plus_15 += int(row[18])
-			 if row[19] != '':
+			if row[19] != '':
 				num_D_15 += int(row[19])
-			 if row[20] != '':
+			if row[20] != '':
 				num_D_minus_15 += int(row[20])		
-			 if row[21] != '':
+			if row[21] != '':
 				num_F_15 += int(row[21])
 
 
@@ -127,4 +127,3 @@ for s_matching_class in spring_matching_classes:
 	s_grade_2007, s_grade_2015 = get_grade_tuple(s_csvreader2007, s_csvreader2015, s_matching_class)
 	spring_grade_dict[s_matching_class] = (s_grade_2007, s_grade_2015)
 
-print fall_grade_dict['COMPSCI 61A']

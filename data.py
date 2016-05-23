@@ -15,7 +15,6 @@ open_fall_file2015 = open(fall_file2015, 'rU')
 def get_matching_classes(file_2007, file_2015):
 	matching_class = set()
 	csvreader2007 = list(csv.reader(file_2007))
-	print csv.reader(file_2007)
 	csvreader2015 = list(csv.reader(file_2015))
 	for row_07 in csvreader2007[1:]:
 		row_07 = list(row_07)
@@ -46,10 +45,10 @@ def get_grade_tuple(filename, className, year):
 	num_F = 0
 	abbrev = className.split(' ')[0]
 	class_num = className.split(' ')[1]
-	csvreader = csv.reader(filename)
-	row_list = [row1 for row1 in csvreader]
+	csvreader = list(csv.reader(filename))
 	if year == 2007:	
-		for row in row_list[1:]:
+		print csvreader
+		for row in csvreader[1:]:
 			row = list(row)
 			if abbrev == row[0] and class_num == str(row[1]):
 				num_A_plus += row[5]
@@ -65,8 +64,9 @@ def get_grade_tuple(filename, className, year):
 				num_D += row[15]
 				num_D_minus += row[16]
 				num_F += row[17]
+				print num_F			
 	elif year == 2015:
-		for row in row_list[1:]:
+		for row in csvreader[1:]:
 			row = list(row)
 			if abbrev == row[1] and class_num == str(row[3]):
 				 if row[9] != '':
@@ -105,7 +105,7 @@ spring_matching_classes = get_matching_classes(open_spring_file2007, open_spring
 fall_grade_dict = {}
 spring_grade_dict = {}
 for f_matching_class in fall_matching_classes:
-	f_grade_2015 = get_grade_tuple(fall_file2015, f_matching_class, 2015)
+	f_grade_2015 = get_grade_tuple(open_fall_file2015, f_matching_class, 2015)
 	f_grade_2007 = get_grade_tuple(open_fall_file2007, f_matching_class, 2007)
 	fall_grade_dict[f_matching_class] = (f_grade_2007, f_grade_2015)
 

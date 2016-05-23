@@ -18,13 +18,12 @@ def get_matching_classes(file_2007, file_2015):
 	csvreader2015 = list(csv.reader(file_2015))
 	for row_07 in csvreader2007[1:]:
 		row_07 = list(row_07)
-		row_07_class = row_07[0] + ' ' + row_07[1].strip(' ')
+		row_07_class = (row_07[0]).replace(' ', '') + ' ' + row_07[1].strip(' ')
 		
 		for row_15 in csvreader2015[1:]:
-
-
 			row_15 = list(row_15)
-			row_15_class = row_15[2] + ' ' + row_15[4]
+
+			row_15_class = (row_15[2]).replace(' ', '') + ' ' + row_15[4]
 			if row_07_class == row_15_class:
 				matching_class.add(row_15_class)
 	return matching_class
@@ -47,10 +46,9 @@ def get_grade_tuple(filename, className, year):
 	class_num = className.split(' ')[1]
 	csvreader = list(csv.reader(filename))
 	if year == 2007:	
-		print csvreader
 		for row in csvreader[1:]:
 			row = list(row)
-			if abbrev == row[0] and class_num == str(row[1]):
+			if abbrev == row[0].replace(' ', '') and class_num == str(row[1]):
 				num_A_plus += row[5]
 				num_A += row[6]
 				num_A_minus += row[7]
@@ -64,11 +62,10 @@ def get_grade_tuple(filename, className, year):
 				num_D += row[15]
 				num_D_minus += row[16]
 				num_F += row[17]
-				print num_F			
 	elif year == 2015:
 		for row in csvreader[1:]:
 			row = list(row)
-			if abbrev == row[1] and class_num == str(row[3]):
+			if abbrev == row[1].replace(' ', '') and class_num == str(row[3]):
 				 if row[9] != '':
 					num_A_plus += row[9]
 				 if row[10] != '':

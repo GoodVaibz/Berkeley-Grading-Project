@@ -1,7 +1,7 @@
 import csv
 from collections import OrderedDict
 from itertools import islice
-
+import csv_tools
 
 year1 = 2007
 year2 = 2015
@@ -299,7 +299,7 @@ f_all_depts = getDepts(fall_matching_classes)
 s_all_depts = getDepts(spring_matching_classes)
 
 
-# f_ordered_increasing_enrollment_dict = largestClassIncrease(fall_grade_dict)
+f_ordered_increasing_enrollment_dict = largestClassIncrease(fall_grade_dict)
 # count = 10
 # print 'Fall Top 10 in Enrollment Change'
 # for key in f_ordered_increasing_enrollment_dict.keys()[-10:]:
@@ -312,7 +312,7 @@ s_all_depts = getDepts(spring_matching_classes)
 # 	print str(count) + ': ' + key + ' with a change in enrollment of ' + str(f_ordered_increasing_enrollment_dict[key]) + '%'
 # 	count -= 1
 
-# s_ordered_increasing_enrollment_dict = largestClassIncrease(spring_grade_dict)
+s_ordered_increasing_enrollment_dict = largestClassIncrease(spring_grade_dict)
 
 # count = 10
 # print "\n"
@@ -327,7 +327,7 @@ s_all_depts = getDepts(spring_matching_classes)
 # 	print str(count) + ': ' + key + ' with a change in enrollment of ' + str(s_ordered_increasing_enrollment_dict[key]) + '%'
 # 	count -= 1
 
-# f_ordered_a_prop_dict = aProportionIncrease(fall_grade_dict)
+f_ordered_a_prop_dict = aProportionIncrease(fall_grade_dict)
 
 # count = 10
 # print "\n"
@@ -342,7 +342,7 @@ s_all_depts = getDepts(spring_matching_classes)
 # 	print str(count) + ': ' + key + ' with a change in amount of As by ' + str(f_ordered_a_prop_dict[key]) + '%'
 # 	count -= 1
 
-# s_ordered_a_prop_dict = aProportionIncrease(spring_grade_dict)
+s_ordered_a_prop_dict = aProportionIncrease(spring_grade_dict)
 
 # count = 10
 # print "\n"
@@ -357,7 +357,7 @@ s_all_depts = getDepts(spring_matching_classes)
 # 	print str(count) + ': ' + key + ' with a change in amount of As by ' + str(s_ordered_a_prop_dict[key]) + '%'
 # 	count -= 1
 
-# f_ordered_gpa_dict = GPAIncrease(fall_grade_dict)
+f_ordered_gpa_dict = GPAIncrease(fall_grade_dict)
 
 # count = 10
 # print "\n"
@@ -372,8 +372,13 @@ s_all_depts = getDepts(spring_matching_classes)
 # 	print str(count) + ': ' + key + ' with a change in amount of As by ' + str(f_ordered_gpa_dict[key]) + '%'
 # 	count -= 1
 
-# s_ordered_gpa_dict = GPAIncrease(spring_grade_dict)
+s_ordered_gpa_dict = GPAIncrease(spring_grade_dict)
 
+spring_data = [s_ordered_increasing_enrollment_dict, s_ordered_a_prop_dict, s_ordered_gpa_dict]
+csv_tools.create_csv(spring_data, 'Spring_Data.csv')
+
+fall_data = [f_ordered_increasing_enrollment_dict, f_ordered_a_prop_dict, f_ordered_gpa_dict]
+csv_tools.create_csv(fall_data, 'Fall_data.csv')
 # count = 10
 # print "\n"
 # print 'Spring Top 10 in GPA Increase'
@@ -387,7 +392,7 @@ s_all_depts = getDepts(spring_matching_classes)
 # 	print str(count) + ': ' + key + ' with a change in amount of As by ' + str(s_ordered_gpa_dict[key]) + '%'
 # 	count -= 1
 
-# f_ordered_dept_enrollment_dict = increaseDeptEnrollment(fall_grade_dict, f_all_depts)
+f_ordered_dept_enrollment_dict = increaseDeptEnrollment(fall_grade_dict, f_all_depts)
 # count = 10
 # print "\n"
 # print 'Fall Top 10 in Department Enrollment Change'
@@ -401,7 +406,7 @@ s_all_depts = getDepts(spring_matching_classes)
 # 	print str(count) + ': ' + key + ' with a change in department enrollment of ' + str(f_ordered_dept_enrollment_dict[key]) + '%'
 # 	count -= 1
 
-# s_ordered_dept_enrollment_dict = increaseDeptEnrollment(spring_grade_dict, s_all_depts)
+s_ordered_dept_enrollment_dict = increaseDeptEnrollment(spring_grade_dict, s_all_depts)
 
 # count = 10
 # print "\n"
@@ -416,7 +421,7 @@ s_all_depts = getDepts(spring_matching_classes)
 # 	print str(count) + ': ' + key + ' with a change in department enrollment of ' + str(s_ordered_dept_enrollment_dict[key]) + '%'
 # 	count -= 1
 
-# f_dept_gpa_dict = getDeptGPAIncrease(fall_grade_dict, f_all_depts)
+f_dept_gpa_dict = getDeptGPAIncrease(fall_grade_dict, f_all_depts)
 
 # count = 10
 # print "\n"
@@ -431,7 +436,7 @@ s_all_depts = getDepts(spring_matching_classes)
 # 	print str(count) + ': ' + key + ' with a change in amount of As by ' + str(f_dept_gpa_dict[key]) + '%'
 # 	count -= 1
 
-# s_dept_gpa_dict = getDeptGPAIncrease(spring_grade_dict, s_all_depts)
+s_dept_gpa_dict = getDeptGPAIncrease(spring_grade_dict, s_all_depts)
 
 # count = 10
 # print "\n"
@@ -445,6 +450,12 @@ s_all_depts = getDepts(spring_matching_classes)
 # for key in s_dept_gpa_dict.keys()[:10]:
 # 	print str(count) + ': ' + key + ' with a change in amount of As by ' + str(s_dept_gpa_dict[key]) + '%'
 # 	count -= 1
+
+spring_dept_data = [s_ordered_dept_enrollment_dict, s_dept_gpa_dict]
+csv_tools.create_csv(spring_dept_data, 'Spring_Dept_Data.csv')
+
+fall_dept_data = [f_ordered_dept_enrollment_dict, f_dept_gpa_dict]
+csv_tools.create_csv(fall_dept_data, 'Fall_Dept_data.csv')
 
 # f_compsci_enrollment_dict = enrollmentChangeWithDept(fall_grade_dict, 'ECON')
 # count = len(f_compsci_enrollment_dict)
